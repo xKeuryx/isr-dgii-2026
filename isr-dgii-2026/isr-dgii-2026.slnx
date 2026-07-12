@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="isr-dgii-2026/isr-dgii-2026.vcxproj" Id="1daec943-144b-41c0-98f7-e7b2291d8979" />
+</Solution>

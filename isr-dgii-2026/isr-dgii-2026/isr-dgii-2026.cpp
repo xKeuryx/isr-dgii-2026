@@ -1,0 +1,102 @@
+/*
+    Programa: Cálculo de ISR (Impuesto Sobre la Renta) - República Dominicana
+    Escala vigente: Resolución DGII No. DDG-AR1-2026-00001 (año fiscal 2026)
+    Base legal:     Art. 296 del Código Tributario (Ley 11-92)
+
+    Escala anual aplicada (vigente desde 2018, congelada por ley de presupuesto):
+
+        Renta anual (RD$)                 Tasa a aplicar
+        ------------------------------------------------------------
+        0.01     -  416,220.00             Exento (0%)
+        416,220.01  -  624,329.00          15% sobre el excedente de 416,220.00
+        624,329.01  -  867,123.00          RD$31,216.00 + 20% sobre el excedente de 624,329.00
+        867,123.01  en adelante            RD$79,776.00 + 25% sobre el excedente de 867,123.00
+
+    El programa solicita el sueldo MENSUAL bruto del empleado, lo anualiza
+    (sueldo mensual x 12), aplica la escala progresiva de la DGII y calcula
+    el monto de ISR que corresponde retener cada mes.
+
+    Si el sueldo anualizado no supera el mínimo exento, se indica que no
+    aplica retención (se muestra 0 / N/A).
+*/
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+    double sueldoMensual;
+    double sueldoAnual;
+    double isrAnual = 0.0;
+    double isrMensual = 0.0;
+
+    // Límites de la escala DGII 2026 (montos anuales)
+    const double LIMITE_EXENTO = 416220.00;
+    const double LIMITE_TRAMO2 = 624329.00;
+    const double LIMITE_TRAMO3 = 867123.00;
+
+    const double CUOTA_FIJA_T3 = 31216.00;  // cuota fija tramo 20%
+    const double CUOTA_FIJA_T4 = 79776.00;  // cuota fija tramo 25%
+
+    cout << fixed << setprecision(2);
+
+    cout << "=================================================\n";
+    cout << "   CALCULO DEL ISR - ESCALA DGII 2026 (REP. DOM.)\n";
+    cout << "=================================================\n\n";
+
+    cout << "Ingrese el sueldo bruto mensual del empleado (RD$): ";
+    cin >> sueldoMensual;
+
+    // Validacion basica de entrada
+    if (sueldoMensual < 0) {
+        cout << "\nEl sueldo no puede ser un valor negativo.\n";
+        return 0;
+    }
+
+    // Se anualiza el sueldo para aplicar la escala del ISR (la escala es anual)
+    sueldoAnual = sueldoMensual * 12;
+
+    // Aplicacion de la escala progresiva del ISR
+    if (sueldoAnual <= LIMITE_EXENTO) {
+        // No aplica retencion de ISR
+        isrAnual = 0.0;
+    }
+    else if (sueldoAnual <= LIMITE_TRAMO2) {
+        // 15% sobre el excedente del minimo exento
+        isrAnual = (sueldoAnual - LIMITE_EXENTO) * 0.15;
+    }
+    else if (sueldoAnual <= LIMITE_TRAMO3) {
+        // Cuota fija + 20% sobre el excedente
+        isrAnual = CUOTA_FIJA_T3 + (sueldoAnual - LIMITE_TRAMO2) * 0.20;
+    }
+    else {
+        // Cuota fija + 25% sobre el excedente
+        isrAnual = CUOTA_FIJA_T4 + (sueldoAnual - LIMITE_TRAMO3) * 0.25;
+    }
+
+    // El ISR anual se prorratea entre los 12 meses para obtener la retencion mensual
+    isrMensual = isrAnual / 12.0;
+
+    // Salida de resultados
+    cout << "\n-------------------------------------------------\n";
+    cout << "Sueldo bruto mensual:      RD$ " << sueldoMensual << "\n";
+    cout << "Sueldo anualizado:         RD$ " << sueldoAnual << "\n";
+    cout << "-------------------------------------------------\n";
+
+    if (isrMensual == 0.0) {
+        cout << "Descuento de ISR mensual:  0 (N/A - No aplica retencion)\n";
+    }
+    else {
+        cout << "Descuento de ISR mensual:  RD$ " << isrMensual << "\n";
+    }
+
+    cout << "-------------------------------------------------\n";
+
+    // Sueldo neto informativo (solo descontando ISR, sin incluir TSS)
+    double sueldoNeto = sueldoMensual - isrMensual;
+    cout << "Sueldo neto (despues de ISR): RD$ " << sueldoNeto << "\n";
+    cout << "=================================================\n";
+
+    return 0;
+}
