@@ -80,3 +80,17 @@ _(Captura de pantalla aquí)_
 - DGII — Resolución No. DDG-AR1-2026-00001, escala del ISR para personas
   físicas vigente durante el año fiscal 2026.
 - Código Tributario de la República Dominicana (Ley 11-92), Art. 296.
+<img width="1489" height="805" alt="image" src="https://github.com/user-attachments/assets/6119488f-973f-4298-bece-a96e802a36e4" />
+<img width="1474" height="601" alt="image" src="https://github.com/user-attachments/assets/37bc2356-8b99-4dfe-a057-0ed6b630fedb" />
+<img width="1141" height="337" alt="image" src="https://github.com/user-attachments/assets/e017ddaf-4b1a-4bb3-9876-e1c38b90996d" />
+<img width="1677" height="591" alt="image" src="https://github.com/user-attachments/assets/90ce2437-5af8-4b32-9ca7-54d518fd009e" />
+<img width="985" height="388" alt="image" src="https://github.com/user-attachments/assets/c1287b75-d34a-4d04-844b-4f7be712b3c4" />
+<img width="1714" height="658" alt="image" src="https://github.com/user-attachments/assets/8e7c0415-08b5-4f9a-8698-4061a9717465" />
+<img width="1717" height="657" alt="image" src="https://github.com/user-attachments/assets/da1d339f-1719-4562-8750-f6f45783799b" />
+
+
+
+
+
+
+
